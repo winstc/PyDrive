@@ -18,14 +18,15 @@ CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'PyDrive'
 
 def get_credentials():
-    """Gets valid user credentials from storage.
-
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
+    
+    #Gets valid user credentials from storage.
+    #
+    #If nothing has been stored, or if the stored credentials are invalid,
+    #the OAuth2 flow is completed to obtain the new credentials.
+    #
+    #Returns:
+    #    Credentials, the obtained credential.
+    
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
@@ -46,11 +47,12 @@ def get_credentials():
     return credentials
 
 def main():
-    """Shows basic usage of the Google Drive API.
+    
+    #Shows basic usage of the Google Drive API.
+    #
+    #Creates a Google Drive API service object and outputs the names and IDs
+    #for up to 10 files.
 
-    Creates a Google Drive API service object and outputs the names and IDs
-    for up to 10 files.
-    """
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('drive', 'v2', http=http)
