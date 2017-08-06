@@ -12,12 +12,17 @@ parser.add_argument("--sync", action="store_true")
 
 args = parser.parse_args()
 
+
+def format_item_pretty(item):
+    print('{0}.) {1} ({2}) [{3}]'.format(items.index(item), item['name'], item['id'], item['mimeType']))
+
+
 if args.search_string:
     client = dc.Client()
     items = client.search(args.search_string)
     if items:
         for item in items:
-            print('{0}.) {1} ({2}) [{3}]'.format(items.index(item), item['name'], item['id'], item['mimeType']))
+            format_item_pretty(item)
     else:
         print("Search returned no results")
 
@@ -31,7 +36,7 @@ elif args.clone_id:
             if len(items) > 1:
                 print("You request returned more than one result:")
                 for item in items:
-                    print('{0}.) {1} ({2}) [{3}]'.format(items.index(item), item['name'], item['id'], item['mimeType']))
+                    format_item_pretty(item)
                 while True:
                     try:
                         choice = int(input("Please enter the index number of the desired file: "))
